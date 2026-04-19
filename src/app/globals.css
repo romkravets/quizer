@@ -1,0 +1,667 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #fcfbff;
+  --dark: #333;
+  --red: #c83d32;
+  --blue: #62a1a9;
+  --green: #99af5d;
+  --yelow: #e6b740;
+  --darken-blue: #2b595a;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--dark);
+  background-color: white;
+  scroll-behavior: smooth;
+}
+
+/*Reset default style*/
+body, div, section, h1, h2, h3, h4, h5, img, p ul, li, nav, header {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+/*Reset default style*/
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.loader {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Карта */
+#Ukraine {
+  height: 100vh;
+}
+
+#KyivCity {
+  fill: var(--blue);
+  opacity: 0;
+}
+
+.mapBackground {
+  fill: var(--yelow);
+  stroke: var(--dark);
+  stroke-width: 0.5;
+}
+
+#Ukraine path:hover {
+  fill: var(--green);
+}
+
+#Ukraine .mapImage:hover {
+  fill: var(--green);
+}
+
+.pointerCircle {
+  r: 2px;
+  fill: var(--red);
+  stroke-linecap: square;
+  stroke-linejoin: bevel;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  stroke-opacity: 1;
+}
+
+.cityName {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 0.7em;
+  fill: var(--dark);
+  text-shadow: white 1px 1px 0, white -1px -1px 0,
+  white -1px 1px 0, white 1px -1px;
+}
+
+
+#Kyiv:hover ~.cityKyiv,
+#KyivCity:hover ~.cityKiev,
+#SevastopolCity:hover ~.citySevastopol,
+#Crimea:hover ~.citySimferopol,
+#Cherkasy:hover ~.cityCherkasy,
+#Chernivtsi:hover ~.cityChernivtsi,
+#Dnipropetrovsk:hover ~.cityDnipro,
+#Donetsk:hover ~.cityDonetsk,
+#Ivano-Frankivsk:hover ~.cityIvano-Frankivsk,
+#Kharkiv:hover ~.cityKharkiv,
+#Kherson:hover ~.cityKherson,
+#Khmelnytskyi:hover ~.cityKhmelnytskyi,
+#Kirovohrad:hover ~.cityKropyvnytskyi,
+#Luhansk:hover ~.cityLuhansk,
+#Lviv:hover ~.cityLviv,
+#Mykolaiv:hover ~.cityMykolaiv,
+#Odessa:hover ~.cityOdessa,
+#Poltava:hover ~.cityPoltava,
+#Rivne:hover ~.cityRivne,
+#Sumu:hover ~.citySumu,
+#Chernihiv:hover ~.cityChernihiv,
+#Ternopil:hover ~.cityTernopil,
+#Zakarpattia:hover ~.cityUzhhorod,
+#Vinnytsia:hover ~.cityVinnytsia,
+#Volyn:hover ~.cityLutsk,
+#Zaporizhia:hover ~.cityZaporizhia,
+#Zhytomyr:hover ~.cityZhytomyr{
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Карта */
+
+/* Builder */
+.stepper-wrapper {
+
+}
+.stepper-wrapper * {
+  box-sizing: border-box;
+}
+.stepper-wrapper .stepper-head {
+  display: flex;
+  position: relative;
+  width: 100%;
+  user-select: none;
+  /* styles of inline stepper */
+  /* styles of vertical stepper */
+}
+.stepper-wrapper .stepper-head.inline-stepper-head .stepper-step:after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.stepper-wrapper .stepper-head.inline-stepper-head .stepper-indicator, .stepper-wrapper .stepper-head.inline-stepper-head .stepper-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.stepper-wrapper .stepper-head.inline-stepper-head .stepper-label {
+  text-align: left;
+  padding: 0 0.5rem;
+  background: #fff;
+}
+.stepper-wrapper .stepper-head.vertical-stepper-head {
+  flex-direction: column;
+  width: auto;
+}
+.stepper-wrapper .stepper-head.vertical-stepper-head .stepper-step {
+  display: flex;
+  align-items: center;
+  text-align: start;
+}
+.stepper-wrapper .stepper-head.vertical-stepper-head .stepper-step:after {
+  content: " ";
+  position: absolute;
+  left: 1.5rem;
+  right: auto;
+  top: 2rem;
+  bottom: -0.5rem;
+  width: 0;
+  height: auto;
+  border-left: 0.125rem solid #e3e8ec;
+}
+.stepper-wrapper .stepper-head.vertical-stepper-head .stepper-step.rightToLeft:after {
+  right: 1.5rem;
+  left: auto;
+}
+.stepper-wrapper .stepper-head.vertical-stepper-head .stepper-label {
+  padding-inline-start: 1rem;
+}
+.stepper-wrapper .stepper-head.vertical-stepper-head + .stepper-body {
+  margin-inline-start: 3.5rem;
+}
+.stepper-wrapper .stepper-head .stepper-step {
+  position: relative;
+  text-align: center;
+  padding: 0.5rem;
+  flex-basis: 100%;
+}
+.stepper-wrapper .stepper-head .stepper-step.rightToLeft:after {
+  left: -50%;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-complete .stepper-indicator-info {
+  border-color: #4caf50;
+  background-color: #4caf50;
+  cursor: pointer;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-complete .stepper-label {
+  color: #4caf50;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-active .stepper-indicator-info {
+  border-color: #627c90;
+  background-color: #627c90;
+  cursor: initial;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-active .stepper-label {
+  color: #627c90;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-warning .stepper-indicator-info {
+  border-color: #f1c40f;
+  background-color: #f1c40f;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-warning .stepper-label {
+  color: #f1c40f;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-error .stepper-indicator-info {
+  border-color: #e95a4b;
+  background-color: #e95a4b;
+}
+.stepper-wrapper .stepper-head .stepper-step.is-error .stepper-label {
+  color: #e95a4b;
+}
+.stepper-wrapper .stepper-head .stepper-step:after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  width: 100%;
+  height: 0.125rem;
+  background-color: #e3e8ec;
+  z-index: 1;
+}
+
+.stepper-wrapper .stepper-head .stepper-step:last-child:after {
+  display: none;
+}
+
+.stepper-wrapper .stepper-head .stepper-indicator {
+  position: relative;
+  display: block;
+  z-index: 2;
+}
+
+.stepper-wrapper .stepper-head .stepper-indicator-info {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #e3e8ec;
+  border-radius: 50%;
+  background-color: #e3e8ec;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.stepper-wrapper .stepper-head .stepper-indicator-info .stepper-tick {
+  width: 14px;
+  fill: #fff;
+}
+
+.stepper-wrapper .stepper-head .stepper-label {
+  position: relative;
+  display: block;
+  margin: 0.5rem 0;
+  color: #cfd7de;
+  z-index: 2;
+}
+
+.stepper-wrapper .stepper-body {
+  flex: 1;
+  min-height: 100px;
+  padding: 10px 0;
+}
+
+.stepper-footer {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.stepper-wrapper .stepper-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  justify-content: center;
+}
+
+.stepper-wrapper .stepper-footer-btn {
+  color: rgba(0, 0, 0, 0.87);
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.stepper-wrapper .stepper-footer-btn.primary {
+  color: #fff;
+  background-color: #1976d2;
+}
+
+.stepper-wrapper .stepper-footer-btn.success {
+  color: #fff;
+  background-color: #4caf50;
+}
+.stepper-wrapper .stepper-footer-btn:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.12);
+  cursor: not-allowed;
+}
+
+.stepper-wrapper form{
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.btn-transparent{
+  border-radius: 16px;
+  width: 160px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  border: 1px solid #333333;
+  padding: 10px 20px;
+  list-style: none;
+  margin: 0 auto;
+  display: block;
+  color: black;
+  cursor: pointer;
+}
+
+.btn.stepper-footer-btn.btn-continue{
+  background-color: yellow;
+  border-radius: 16px;
+  width: 160px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  border: 1px solid #333333;
+  padding: 10px 20px;
+  list-style: none;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Builder */
+
+/* Login */
+
+.auth-container {
+  margin: 10% auto 0 auto;
+  max-width: 400px;
+  height: 300px;
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 4px 0 15px rgba(49,49,49,.05),0 4px 15px rgba(49,49,49,.05);
+}
+
+.auth-container h3 {
+  margin: 30px 0 50px 0;
+}
+
+.button-login {
+  background-color: rgb(255, 195, 195);
+  border-radius: 16px;
+  height: 55px;
+  width: 200px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  border: 1px solid #333333;
+}
+.button-login:hover{
+  background: rgba(0,0,0,0);
+  cursor: pointer;
+}
+
+/*Login*/
+
+/*Quiz*/
+
+.quiz-img {
+  opacity: 0.6;
+}
+
+.react-quiz-container {
+  width: 100%;
+  z-index: 100!important;
+  position: absolute!important;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  margin: 0!important;
+  background-color: rgba(230, 183, 64, 0.69);
+  padding: 20px;
+  border-radius: 17px;
+}
+
+.react-quiz-container .number-of-selection, .react-quiz-container .selection-tag.single {
+  display: none;
+}
+
+/*Quiz*/
+
+.dashboard, .builder {
+  margin-bottom: 50px;
+}
+
+.dashboard-nav, .builder-nav{
+  padding: 20px 30px;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.16);
+  margin-bottom: 20px;
+  background-color: #f7f7f7;
+}
+
+.dashboard-li-quest a, .builder-li-main a, .builder-li-builder a{
+  background-color: yellow;
+  border-radius: 16px;
+  width: 160px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  border: 1px solid #333333;
+  padding: 10px 20px;
+  list-style: none;
+}
+
+.dashboard-li-quest{
+  list-style: none;
+}
+
+.cart-color-second {
+  color: #26262882;
+}
+
+.dashboard-li-quest a{
+  background-color: #e6b740;
+  color: #333333;
+  font-weight: bold;
+}
+
+.dashboard-li-main a, .builder-li-profile a, .builder-li-exit button {
+  background-color: yellow;
+  border-radius: 16px;
+  width: 95px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  border: 1px solid #333333;
+  padding: 10px 20px;
+  list-style: none;
+}
+
+.builder-li-exit button {
+  cursor: pointer;
+}
+
+.dashboard-li-main, .builder-ul li{
+  list-style: none;
+}
+
+.dashboard-li-main:hover{
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.dashboard-li-quest:hover{
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.dashboard-ul, .builder-ul{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .dashboard-ul, .builder-ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dashboard-li-main, .builder-ul li, .builder-li-main, .builder-li-builder, .builder-li-exit, .dashboard-li-quest {
+    height: 50px;
+  }
+}
+
+.region-map-container {
+  width: 500px;
+  height: 600px;
+  position: relative
+}
+
+@media (max-width: 700px) {
+  .region-map-container {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.quests-dashboard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.dashboard-card h3{
+  font-size: 16px;
+}
+
+.dashboard-card .description{
+  font-size: 14px;
+}
+
+.dashboard-card .cart-color-second {
+  font-size: 12px;
+}
+
+.quests-dashboard button{
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: yellow;
+  padding: 10px 20px;
+  border: 0.5px solid #333333;
+}
+
+.quests-dashboard button:hover{
+ cursor: pointer;
+ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+}
+
+.quests-dashboard a {
+  display: block;
+  max-width: 45%;
+}
+
+@media (max-width: 992px) {
+  .quests-dashboard a {
+    max-width: 100%;
+  }
+}
+
+.dashboard-map div {
+  margin: 40px auto;
+}
+
+.dashboard-card {
+  display: block;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding: 20px;
+  margin: 10px 20px;
+  border-radius: 17px;
+  color: rgb(0, 0, 0);
+  min-width: 45%;
+}
+
+@media (max-width: 992px) {
+  .dashboard-card {
+    max-width: 100%;
+  }
+}
+
+.dashboard-card:hover {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22);
+}
+
+.region{
+  text-align: center;
+  font-size: 25px;
+}
+
+/* form */
+
+.form-textarea, .form-input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  height: 200px;
+}
+
+/* builder */
+
+.Variants button, .btn.btn-continue{
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: yellow;
+  padding: 5px 10px;
+  border: 0.5px solid #333333;
+}
+
+/* setting */
+
+.my-quest-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.my-quest, .builder-question {
+  display: block;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding: 20px;
+  margin: 10px 20px;
+  border-radius: 17px;
+  color: rgb(0, 0, 0);
+  min-width: 45%;
+  width: 45%;
+}
+
+@media (max-width: 992px) {
+  .my-quest, .builder-question {
+    width: 100%;
+  }
+}
+
+.my-quest button, .builder-question button{
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: yellow;
+  padding: 10px 20px;
+  border: 0.5px solid #333333;
+  cursor: pointer;
+}
+
+.delate {
+  background-color: rgb(255, 195, 195);
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.builder-question-button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
