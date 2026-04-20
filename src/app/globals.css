@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,8 +13,8 @@ svg {
 }
 
 /* ═══════════════════════════════════
-   Design System — Mistral-inspired
-   Warm amber · Sharp geometry · 400wt
+   Design System — Quizer
+   Dark nav · Warm amber · Inter · Sharp
    ═══════════════════════════════════ */
 
 * {
@@ -22,6 +24,7 @@ svg {
 :root {
   --bg-color: #fffaeb;
   --dark: #1f1f1f;
+  --dark-soft: #2a2a2a;
   --orange: #fa520f;
   --flame: #fb6424;
   --sunshine-700: #ffa110;
@@ -29,6 +32,10 @@ svg {
   --gold: #ffd900;
   --cream: #fff0c2;
   --ivory: #fffaeb;
+
+  /* Glow */
+  --glow-orange: 0 0 20px rgba(250, 82, 15, 0.35), 0 0 40px rgba(250, 82, 15, 0.12);
+  --glow-gold: 0 0 20px rgba(255, 217, 0, 0.35), 0 0 40px rgba(255, 217, 0, 0.12);
 
   /* Legacy map vars */
   --red: #fa520f;
@@ -38,13 +45,23 @@ svg {
   --darken-blue: #ff8105;
 }
 
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--cream); }
+::-webkit-scrollbar-thumb:hover { background: var(--sunshine-500); }
+
+/* ─── Selection ─── */
+::selection { background: rgba(250, 82, 15, 0.2); color: var(--dark); }
+
 body {
-  font-family: Arial, ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
   color: var(--dark);
   background-color: var(--ivory);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body, div, section, h1, h2, h3, h4, h5, img, p, ul, li, nav, header {
@@ -73,11 +90,20 @@ button[disabled] {
 }
 
 /* ═══ Typography ═══ */
-h1 { font-size: 3.5rem; line-height: 0.95; letter-spacing: -0.05rem; font-weight: 400; }
-h2 { font-size: 2rem; line-height: 1.15; font-weight: 400; }
+h1 { font-size: 3.5rem; line-height: 0.95; letter-spacing: -0.05rem; font-weight: 500; }
+h2 { font-size: 2rem; line-height: 1.15; font-weight: 500; }
 h3 { font-size: 1.5rem; line-height: 1.33; font-weight: 400; }
 h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 
+/* ═══ Gradient text utility ═══ */
+.gradient-text {
+  background: linear-gradient(90deg, #fa520f 0%, #ffd900 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══ Loader ═══ */
 .loader {
   display: flex;
   margin: 0 auto;
@@ -130,7 +156,7 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   opacity: 0;
   transition: all 0.3s ease;
   pointer-events: none;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   font-size: 0.7em;
   fill: var(--dark);
@@ -328,7 +354,7 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   font-size: 1rem;
   min-width: 64px;
   transition: background-color 200ms ease, box-shadow 200ms ease;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
   border-radius: 0;
@@ -408,24 +434,26 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 .auth-container h3 {
   margin: 24px 0 40px 0;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
 }
 .button-login {
-  background-color: var(--dark);
+  background: linear-gradient(90deg, #fa520f 0%, #ffd900 100%);
   border-radius: 0;
   height: auto;
   padding: 16px 32px;
   width: auto;
   min-width: 200px;
   font-size: 1rem;
+  font-weight: 500;
   transition: all 0.2s ease;
   border: none;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 .button-login:hover {
-  background: var(--orange);
+  box-shadow: var(--glow-orange);
+  transform: translateY(-1px);
 }
 
 /* ═══ Quiz ═══ */
@@ -457,26 +485,28 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 }
 .dashboard-nav, .builder-nav {
   padding: 16px 32px;
-  background-color: var(--cream);
+  background-color: var(--dark);
   margin-bottom: 24px;
-  border-bottom: 2px solid var(--sunshine-500);
+  border-bottom: 2px solid var(--orange);
 }
 .dashboard-li-quest a, .builder-li-main a, .builder-li-builder a {
-  background-color: var(--dark);
+  background: linear-gradient(90deg, #fa520f 0%, #ffd900 100%);
   border-radius: 0;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   transition: all 0.2s ease;
   border: none;
   padding: 12px 24px;
   list-style: none;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 .dashboard-li-quest a:hover,
 .builder-li-main a:hover,
 .builder-li-builder a:hover {
-  background-color: var(--orange);
+  box-shadow: var(--glow-orange);
+  transform: translateY(-1px);
 }
 .dashboard-li-quest {
   list-style: none;
@@ -486,22 +516,24 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   font-size: 0.875rem;
 }
 .dashboard-li-main a, .builder-li-profile a, .builder-li-exit button {
-  background-color: var(--cream);
+  background-color: transparent;
   border-radius: 0;
   width: auto;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
   transition: all 0.2s ease;
-  border: 2px solid var(--dark);
+  border: 1.5px solid rgba(255,255,255,0.3);
   padding: 10px 20px;
   list-style: none;
-  color: var(--dark);
+  color: rgba(255,255,255,0.8);
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 .dashboard-li-main a:hover,
 .builder-li-profile a:hover,
 .builder-li-exit button:hover {
-  background-color: var(--dark);
-  color: #fff;
+  border-color: var(--gold);
+  color: var(--gold);
 }
 .builder-li-exit button {
   cursor: pointer;
@@ -544,7 +576,7 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   text-align: center;
   font-size: 2rem;
   padding: 24px 0;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .quests-dashboard {
@@ -555,29 +587,30 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   padding: 0 16px;
 }
 .dashboard-card h3 {
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 500;
   margin-bottom: 8px;
 }
 .dashboard-card .description {
   font-size: 0.875rem;
-  line-height: 1.5;
-  margin-bottom: 8px;
+  line-height: 1.6;
+  margin-bottom: 12px;
 }
 .quests-dashboard button {
   border-radius: 0;
-  font-size: 1rem;
-  background-color: var(--dark);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: linear-gradient(90deg, #fa520f 0%, #ffd900 100%);
   color: #fff;
   padding: 12px 24px;
   border: none;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  transition: background-color 0.2s ease;
+  letter-spacing: 0.04em;
+  transition: all 0.2s ease;
 }
 .quests-dashboard button:hover {
-  background-color: var(--orange);
-  box-shadow: none;
+  box-shadow: var(--glow-orange);
+  transform: translateY(-1px);
 }
 .quests-dashboard a {
   display: block;
@@ -593,15 +626,16 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 }
 .dashboard-card {
   display: block;
-  background: var(--cream);
+  background: #fff;
+  border: 1px solid rgba(255, 208, 106, 0.4);
   padding: 24px;
   margin: 10px 16px;
   border-radius: 0;
   color: var(--dark);
   min-width: 45%;
-  box-shadow: rgba(127, 99, 21, 0.10) 0px 4px 16px,
-    rgba(127, 99, 21, 0.06) 0px 12px 32px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: rgba(127, 99, 21, 0.08) 0px 4px 16px,
+    rgba(127, 99, 21, 0.04) 0px 12px 32px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
 @media (max-width: 992px) {
   .dashboard-card {
@@ -609,27 +643,29 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   }
 }
 .dashboard-card:hover {
+  border-color: rgba(250, 82, 15, 0.3);
   box-shadow: rgba(127, 99, 21, 0.12) -8px 16px 39px,
     rgba(127, 99, 21, 0.10) -33px 64px 72px;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 /* ═══ Forms ═══ */
 .form-textarea, .form-input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--cream);
+  border: 1.5px solid var(--cream);
   border-radius: 0;
   font-size: 1rem;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   margin-bottom: 12px;
   background: #fff;
   color: var(--dark);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .form-textarea:focus, .form-input:focus {
   outline: none;
   border-color: var(--sunshine-700);
+  box-shadow: 0 0 0 3px rgba(255, 161, 16, 0.12);
 }
 .form-textarea {
   height: 200px;
@@ -639,12 +675,14 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 /* ═══ Builder variants ═══ */
 .Variants button, .btn.btn-continue {
   border-radius: 0;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   background-color: var(--cream);
   padding: 8px 16px;
-  border: 2px solid var(--dark);
+  border: 1.5px solid var(--dark);
   color: var(--dark);
   text-transform: uppercase;
+  letter-spacing: 0.02em;
   transition: all 0.2s ease;
 }
 .Variants button:hover, .btn.btn-continue:hover {
@@ -660,31 +698,38 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 }
 .my-quest, .builder-question {
   display: block;
-  background: var(--cream);
+  background: #fff;
+  border: 1px solid rgba(255, 208, 106, 0.4);
   padding: 24px;
   margin: 10px 16px;
   border-radius: 0;
   color: var(--dark);
   min-width: 45%;
   width: 45%;
-  box-shadow: rgba(127, 99, 21, 0.10) 0px 4px 16px,
-    rgba(127, 99, 21, 0.06) 0px 12px 32px;
+  box-shadow: rgba(127, 99, 21, 0.08) 0px 4px 16px,
+    rgba(127, 99, 21, 0.04) 0px 12px 32px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 @media (max-width: 992px) {
   .my-quest, .builder-question {
     width: 100%;
   }
 }
+.my-quest:hover, .builder-question:hover {
+  border-color: rgba(250, 82, 15, 0.25);
+}
 .my-quest button, .builder-question button {
   border-radius: 0;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   background-color: var(--dark);
   color: #fff;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border: none;
   cursor: pointer;
   text-transform: uppercase;
-  transition: background-color 0.2s ease;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
 }
 .my-quest button:hover, .builder-question button:hover {
   background-color: var(--orange);

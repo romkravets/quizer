@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import LeaderboardTable from '@/components/Leaderboard/LeaderboardTable';
-import NavBar from '@/components/ui/NavBar';
+import LeaderboardTable from "@/components/Leaderboard/LeaderboardTable";
+import NavBar from "@/components/ui/NavBar";
 
 export default function LeaderboardPage() {
   return (

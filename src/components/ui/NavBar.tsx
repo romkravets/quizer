@@ -18,37 +18,54 @@ export default function NavBar({
   const { locale, toggleLocale, t } = useTranslation();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-sunshine-300/40 bg-surface-cream/90 px-4 py-3 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-5xl items-center justify-between">
-        <div className="flex items-center gap-4">
+    <nav className="sticky top-0 z-50 bg-brand-dark shadow-dark-lg">
+      {/* Orange accent line at top */}
+      <div className="h-[2px] w-full bg-fire-gradient" />
+
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        {/* Left — logo + back */}
+        <div className="flex items-center gap-5">
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="text-xl leading-none">🇺🇦</span>
+            <span
+              className="text-base font-semibold tracking-tight gradient-text"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              {t('map.title')}
+            </span>
+          </Link>
+
           {showBack && (
             <Link
               href="/"
-              className="flex items-center gap-1 text-sm text-brand-dark transition-colors hover:text-brand-orange"
+              className="hidden items-center gap-1 text-xs font-medium uppercase tracking-widest text-white/40 transition-colors hover:text-brand-yellow sm:flex"
             >
-              ← {t('common.home')}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="shrink-0">
+                <path d="M8 2L4 6L8 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              {t('common.home')}
             </Link>
           )}
-          <Link href="/" className="text-lg text-brand-dark">
-            🇺🇦 {t('map.title')}
-          </Link>
         </div>
 
-        <div className="flex items-center gap-3">
+        {/* Right — nav links + lang toggle */}
+        <div className="flex items-center gap-2">
           {showProgress && (
             <Link
               href="/progress"
-              className="hidden text-sm text-brand-dark transition-colors hover:text-brand-orange sm:inline"
+              className="hidden items-center gap-1.5 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/60 transition-all hover:text-brand-yellow sm:flex"
             >
-              📊 {t('common.progress')}
+              <span className="text-sm">📊</span>
+              {t('common.progress')}
             </Link>
           )}
           {showLeaderboard && (
             <Link
               href="/leaderboard"
-              className="hidden text-sm text-brand-dark transition-colors hover:text-brand-orange sm:inline"
+              className="hidden items-center gap-1.5 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/60 transition-all hover:text-brand-yellow sm:flex"
             >
-              🏆 {t('common.leaderboard')}
+              <span className="text-sm">🏆</span>
+              {t('common.leaderboard')}
             </Link>
           )}
           <LanguageToggle locale={locale} onToggle={toggleLocale} />

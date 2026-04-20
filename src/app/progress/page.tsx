@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import ProgressDashboard from '@/components/Progress/ProgressDashboard';
-import NavBar from '@/components/ui/NavBar';
+import ProgressDashboard from "@/components/Progress/ProgressDashboard";
+import NavBar from "@/components/ui/NavBar";
 
 export default function ProgressPage() {
   return (
