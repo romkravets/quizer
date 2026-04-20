@@ -38,7 +38,7 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://www.google.com https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://*.gstatic.com https://*.firebaseapp.com https://*.firebasedatabase.app",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: blob: https://firebasestorage.googleapis.com https://*.googleusercontent.com",
+              "img-src 'self' data: blob: https://firebasestorage.googleapis.com https://*.googleusercontent.com https://*.tile.openstreetmap.org",
               "font-src 'self' https://fonts.gstatic.com",
               "connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.firebaseapp.com https://*.firebasedatabase.app https://fonts.gstatic.com wss://*.firebaseio.com wss://*.firebasedatabase.app https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.anthropic.com",
               "frame-src 'self' https://accounts.google.com https://www.google.com https://*.firebaseapp.com https://*.firebasedatabase.app",

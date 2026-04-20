@@ -1,3 +1,5 @@
+// ПРИМЕР: Як оновити dashboard.js для використання інтерактивної карти
+
 import { useRouter } from "next/router";
 import "../src/app/globals.css";
 import Link from "next/link";
@@ -11,11 +13,8 @@ import { regions } from "../src/helpers/regionType";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Fancybox from "../src/helpers/map";
 import { translateRegionNameToUkrainian } from "../src/helpers/functions";
-import dynamic from "next/dynamic";
-const InteractiveRegionMap = dynamic(
-  () => import("@/components/RegionMap/InteractiveRegionMap"),
-  { ssr: false },
-);
+// ✅ НОВА ІМПОРТАЦІЯ
+import InteractiveRegionMap from "../src/components/RegionMap/InteractiveRegionMap";
 
 const Dashboard = () => {
   const tasksRef = ref(db);
@@ -78,6 +77,11 @@ const Dashboard = () => {
         <div className="region">
           <h4>{translateRegionNameToUkrainian(router.query.data)}</h4>
         </div>
+
+        {/* ✅ ЗАМІСТЬ СТАТИЧНОЇ КАРТИ - ІНТЕРАКТИВНА КАРТА */}
+        <InteractiveRegionMap regionName={router.query.data} />
+
+        {/* ✅ ВИДАЛЕНО СТАРИЙ КОД: 
         <div className="dashboard-map">
           {regions.map((item, index) => {
             switch (router.query.data) {
@@ -97,7 +101,6 @@ const Dashboard = () => {
                       href={`/region-map/${router.query.data}.jpeg`}
                     >
                       <div key={index} className="region-map-container">
-                        {/*  <InteractiveRegionMap regionName={router.query.data} /> */}
                         <Image
                           src={`/region-map/${router.query.data}.jpeg`}
                           layout="fill"
@@ -113,6 +116,8 @@ const Dashboard = () => {
             }
           })}
         </div>
+        */}
+
         <h2 style={{ marginLeft: "20px", fontWeight: "400" }}>
           Квести, тести та вікторини
         </h2>
