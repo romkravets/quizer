@@ -1,4 +1,6 @@
 import type { Locale } from '@/types';
+import ukMessages from '@/messages/uk.json';
+import enMessages from '@/messages/en.json';
 
 const LOCALE_KEY = 'uaquiz_locale';
 
@@ -24,15 +26,13 @@ export function setLocale(locale: Locale): void {
 
 type Messages = Record<string, string | Record<string, string>>;
 
-let messagesCache: Record<Locale, Messages | null> = { uk: null, en: null };
+const allMessages: Record<Locale, Messages> = {
+  uk: ukMessages as unknown as Messages,
+  en: enMessages as unknown as Messages,
+};
 
 export async function loadMessages(locale: Locale): Promise<Messages> {
-  if (messagesCache[locale]) return messagesCache[locale]!;
-  const mod = locale === 'en'
-    ? await import('@/messages/en.json')
-    : await import('@/messages/uk.json');
-  messagesCache[locale] = mod.default;
-  return mod.default;
+  return allMessages[locale];
 }
 
 export function t(

@@ -7,7 +7,7 @@ export default function ProgressPage() {
   return (
     <>
       <NavBar showProgress={false} />
-      <main className="min-h-screen bg-gray-50 pb-8">
+      <main className="min-h-screen bg-surface-ivory pb-8">
         <ProgressDashboard locale="uk" />
       </main>
     </>

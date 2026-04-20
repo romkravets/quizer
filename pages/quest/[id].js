@@ -71,7 +71,7 @@ const Id = () => {
       : null}
       {result ? (
         <div style={{
-            backgroundColor: `rgba(230, 183, 64, 0.69)`,
+            backgroundColor: '#fff0c2',
             height: '100vh',
             width: '100%',
             margin: '0 auto'
@@ -81,16 +81,16 @@ const Id = () => {
               maxWidth: '500px',
               margin: '0 auto',
               zIndex: '100',
-              backgroundColor: 'rgba(230, 183, 64, 0.69)',
-              padding: '30px',
-              borderRadius: '17px'
+              backgroundColor: '#fff0c2',
+              padding: '32px',
+              borderRadius: '0'
             }}
           >
             <h2 style={{margin: '30px 0 20px 0'}}>Ви пройшли тест!</h2>
-            <h3 style={{marginBottom: '10px', fontWeight: "normal"}}>{itemQuest.quizTitle}</h3>
+            <h3 style={{marginBottom: '10px', fontWeight: "400"}}>{itemQuest.quizTitle}</h3>
             <div style={{marginBottom: '20px'}}>
-              <span style={{fontWeight: "bold", marginBottom: '10px'}}>{result.numberOfCorrectAnswers} з {result.numberOfQuestions} запитань</span>
-              <h3 style={{color: 'green'}}><span>{result.correctPoints} / {result.totalPoints}</span></h3>
+              <span style={{marginBottom: '10px'}}>{result.numberOfCorrectAnswers} з {result.numberOfQuestions} запитань</span>
+              <h3 style={{color: '#fa520f'}}><span>{result.correctPoints} / {result.totalPoints}</span></h3>
             </div>
             <div style={{marginBottom: '10px'}}>Поділися з друзями!</div>
             <div>

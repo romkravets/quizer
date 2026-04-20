@@ -37,16 +37,16 @@ export default function LeaderboardTable({ currentUserId, locale = 'uk' }: Props
   if (loading) {
     return (
       <div className="flex justify-center p-8">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-yellow border-t-transparent" />
+        <div className="h-8 w-8 animate-spin border-4 border-brand-orange border-t-transparent" />
       </div>
     );
   }
 
   if (entries.length === 0) {
     return (
-      <div className="rounded-xl bg-white p-8 text-center shadow">
+      <div className="bg-surface-cream p-8 text-center shadow-golden-sm">
         <span className="mb-2 block text-4xl">🏆</span>
-        <p className="text-gray-500">
+        <p className="text-brand-dark/50">
           {locale === 'uk' ? 'Поки немає результатів. Будьте першим!' : 'No results yet. Be the first!'}
         </p>
       </div>
@@ -54,16 +54,16 @@ export default function LeaderboardTable({ currentUserId, locale = 'uk' }: Props
   }
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow">
-      <div className="bg-gradient-to-r from-brand-yellow to-brand-green p-4">
-        <h2 className="text-xl font-bold text-white">
+    <div className="overflow-hidden bg-surface-cream shadow-golden">
+      <div className="bg-gradient-to-r from-brand-orange to-brand-yellow p-4">
+        <h2 className="text-xl text-white">
           {locale === 'uk' ? '🏆 Таблиця лідерів' : '🏆 Leaderboard'}
         </h2>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b bg-gray-50 text-left text-sm text-gray-500">
+            <tr className="border-b border-sunshine-300/30 bg-sunshine-300/20 text-left text-sm text-brand-dark/50">
               <th className="p-3">#</th>
               <th className="p-3">{locale === 'uk' ? 'Гравець' : 'Player'}</th>
               <th className="p-3 text-right">{locale === 'uk' ? 'Бали' : 'Score'}</th>
@@ -82,8 +82,8 @@ export default function LeaderboardTable({ currentUserId, locale = 'uk' }: Props
               return (
                 <tr
                   key={entry.id}
-                  className={`border-b transition-colors ${
-                    isYou ? 'bg-brand-yellow/10 font-semibold' : 'hover:bg-gray-50'
+                  className={`border-b border-sunshine-300/20 transition-colors ${
+                    isYou ? 'bg-brand-yellow/10' : 'hover:bg-sunshine-300/10'
                   }`}
                 >
                   <td className="p-3">
@@ -92,7 +92,7 @@ export default function LeaderboardTable({ currentUserId, locale = 'uk' }: Props
                   <td className="p-3">
                     {entry.userName}
                     {isYou && (
-                      <span className="ml-2 rounded bg-brand-yellow px-1.5 py-0.5 text-xs font-bold text-brand-dark">
+                      <span className="ml-2 bg-brand-yellow px-1.5 py-0.5 text-xs text-brand-dark">
                         {locale === 'uk' ? 'Ви' : 'You'}
                       </span>
                     )}

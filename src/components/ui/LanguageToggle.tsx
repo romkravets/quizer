@@ -11,7 +11,7 @@ export default function LanguageToggle({ locale, onToggle }: Props) {
   return (
     <button
       onClick={onToggle}
-      className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-brand-dark transition-colors hover:bg-gray-50"
+      className="flex items-center gap-1.5 border-2 border-brand-dark bg-surface-cream px-3 py-1.5 text-sm text-brand-dark transition-colors hover:bg-brand-dark hover:text-white"
       title={locale === 'uk' ? 'Switch to English' : 'Перемкнути на українську'}
     >
       <span>{locale === 'uk' ? '🇺🇦' : '🇬🇧'}</span>

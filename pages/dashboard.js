@@ -92,7 +92,7 @@ const Dashboard = () => {
             }
           })}
         </div>
-        <h2 style={{marginLeft: '20px'}}>Квести, тести та вікторини</h2>
+        <h2 style={{marginLeft: '20px', fontWeight: '400'}}>Квести, тести та вікторини</h2>
         {dataRegion.length === 0 && !loading ?
           <div className='loader' style={{display: "flex", flexDirection: "column"}}>
             <p>Квестів, вікторин, тестів немає</p>
@@ -118,7 +118,7 @@ const Dashboard = () => {
                         <p className="cart-color-second">Автор: {item.userName}</p>
                         <p className="cart-color-second">Пройдено: {item.completeQuizCount}</p>
                         <button>Пройти тест</button>
-                        <a style={{display: "flex", alignItems: "center", marginTop: '10px'}}>
+                        <div style={{display: "flex", alignItems: "center", marginTop: '10px'}}>
                           <span className="cart-color-second">{item.like}</span>
                           <Image
                             src='/love.svg'
@@ -127,6 +127,7 @@ const Dashboard = () => {
                             alt='like'
                             onClick={(e) => {
                               e.preventDefault()
+                              e.stopPropagation()
                               const dbRef = ref(db, `regions/${item.regionName}/${item.id}`)
                               update(dbRef, {like: item.like + 1}).then(() => {
                                 getFormApp(item.regionName)
@@ -135,7 +136,7 @@ const Dashboard = () => {
                               })
                             }}
                           />
-                        </a>
+                        </div>
                       </Link>
                     )
                   }

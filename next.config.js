@@ -28,7 +28,7 @@ const nextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
           {
             key: "Content-Security-Policy",
             value: [
@@ -37,8 +37,8 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https://firebasestorage.googleapis.com https://*.googleusercontent.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.firebaseapp.com https://*.firebasedatabase.app https://fonts.gstatic.com wss://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.anthropic.com",
-              "frame-src 'self' https://accounts.google.com https://www.google.com https://*.firebaseapp.com",
+              "connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.firebaseapp.com https://*.firebasedatabase.app https://fonts.gstatic.com wss://*.firebaseio.com wss://*.firebasedatabase.app https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.anthropic.com",
+              "frame-src 'self' https://accounts.google.com https://www.google.com https://*.firebaseapp.com https://*.firebasedatabase.app",
               "object-src 'none'",
               "base-uri 'self'",
             ].join("; "),
