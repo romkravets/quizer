@@ -1,3 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Undo Tailwind Preflight SVG fill reset — preserve map colors */
+svg, img, video, canvas, audio, iframe, embed, object {
+  display: revert;
+}
+svg {
+  fill: revert;
+}
+
 * {
   box-sizing: border-box;
 }

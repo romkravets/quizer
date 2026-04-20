@@ -13,6 +13,7 @@ const initialState = {
   userName: "",
   email: "",
   isAuthenticated: false,
+  setAuthObject: /** @type {any} */ (undefined),
 }
 
 export const ThemeContext = createContext(initialState);

@@ -1,0 +1,26 @@
+# UA Quiz — Ukraine Quiz Platform
+
+> Interactive map with quizzes about all 26 regions of Ukraine.
+> AI-powered explanations, achievements, leaderboard, and multilingual support.
+
+## What this site does
+UA Quiz is an educational web application that helps users learn about Ukraine through interactive quizzes. Users can:
+- Explore an interactive map of Ukraine with 26 clickable regions
+- Take quizzes about geography, history, culture, and architecture of each region
+- Get AI-powered explanations after each answer (powered by Claude)
+- Generate new quiz questions with AI for unlimited content
+- Track progress with achievements and badges
+- Compete on a leaderboard
+- Play in different game modes: Learn, Exam, Marathon
+- Share results with friends via social media
+
+## Key information
+- **Languages**: Ukrainian (primary), English
+- **Regions covered**: All 26 oblasts of Ukraine including Crimea
+- **Free to use**: No registration required for basic quizzes
+- **AI features**: Claude AI provides explanations and generates questions
+- **Data source**: Community-created quizzes stored in Firebase
+
+## Contact
+- Website: https://uaquiz.vercel.app
+- GitHub: https://github.com/romkravets/quizer

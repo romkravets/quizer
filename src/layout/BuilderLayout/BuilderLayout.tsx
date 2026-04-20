@@ -4,7 +4,7 @@ import {useRouter} from "next/router"
 import Link from "next/link"
 import {auth} from '../../components/db/firebase'
 
-const BuilderLayout = ({ children }) => {
+const BuilderLayout = ({ children }: { children: React.ReactNode }) => {
   const contextValue = useContext(ThemeContext)
   const router = useRouter()
 
@@ -20,7 +20,7 @@ const BuilderLayout = ({ children }) => {
           <li className="builder-li-exit">
             <button onClick={()=> {
               auth.signOut().then( () => {
-                contextValue.setAuthObject(prevState => ({
+                contextValue.setAuthObject((prevState: any) => ({
                   ...prevState,
                   isAuthenticated: false,
                   userName: '',

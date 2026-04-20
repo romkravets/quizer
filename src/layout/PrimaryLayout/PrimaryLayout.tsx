@@ -1,4 +1,4 @@
-const PrimaryLayout = ({ children }) => {
+const PrimaryLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       {children}

@@ -1,0 +1,102 @@
+{
+  "common": {
+    "home": "Home",
+    "map": "Map",
+    "leaderboard": "Leaderboard",
+    "progress": "Progress",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "createQuiz": "Create Quiz",
+    "loading": "Loading...",
+    "back": "Back",
+    "share": "Share",
+    "language": "Language",
+    "ukraine": "Ukraine",
+    "settings": "Settings"
+  },
+  "map": {
+    "title": "Ukraine Quizzes",
+    "subtitle": "Choose a region and test your knowledge",
+    "completedRegions": "Completed regions: {count} of {total}",
+    "clickRegion": "Click on a region"
+  },
+  "quiz": {
+    "start": "Start Quiz",
+    "next": "Next",
+    "finish": "Finish",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "score": "Score",
+    "timeLeft": "Time left: {seconds}s",
+    "question": "Question {current} of {total}",
+    "noQuizzes": "No quizzes yet",
+    "createFirst": "Create the first quiz for this region",
+    "completed": "Completed: {count}",
+    "liked": "Liked",
+    "author": "Author: {name}",
+    "created": "Created: {date}",
+    "takeQuiz": "Take Quiz"
+  },
+  "ai": {
+    "explanation": "AI Explanation",
+    "funFact": "Fun Fact",
+    "historicalContext": "Historical Context",
+    "generating": "AI is analyzing...",
+    "generateQuestions": "Generate new questions",
+    "generatingQuestions": "Generating questions..."
+  },
+  "modes": {
+    "title": "Choose Game Mode",
+    "learn": "Learn",
+    "learnDesc": "Hints enabled. No time limit.",
+    "exam": "Exam",
+    "examDesc": "No hints, 30 seconds per question.",
+    "marathon": "Marathon",
+    "marathonDesc": "All questions in sequence. Hints enabled."
+  },
+  "progress": {
+    "title": "My Progress",
+    "quizzesCompleted": "Quizzes Completed",
+    "accuracy": "Accuracy",
+    "streak": "Day Streak",
+    "badges": "Achievements",
+    "badgesEarned": "Earned: {count} of {total}",
+    "noBadges": "No achievements yet. Complete your first quiz!",
+    "regionsExplored": "Regions Explored",
+    "bestScore": "Best Score"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "rank": "#",
+    "player": "Player",
+    "score": "Score",
+    "regions": "Regions",
+    "accuracy": "Accuracy",
+    "you": "You",
+    "empty": "No results yet. Be the first!"
+  },
+  "share": {
+    "title": "My Result",
+    "text": "I scored {score}% on {region}! Can you beat that?",
+    "quizResult": "Quiz result: {correct}/{total}",
+    "shareWith": "Share with friends!",
+    "copied": "Link copied!"
+  },
+  "gameModes": {
+    "learn": "📖 Learn",
+    "exam": "📝 Exam",
+    "marathon": "🏃 Marathon"
+  },
+  "results": {
+    "title": "Quiz Complete!",
+    "correct": "{correct} of {total} correct",
+    "points": "{earned} / {total}",
+    "shareTitle": "Share with friends!"
+  },
+  "seo": {
+    "title": "Ukraine Quizzes — Test Your Knowledge About Ukraine",
+    "description": "Interactive map with quizzes about all 26 regions of Ukraine. Learn, play and compete with friends. AI explanations, achievements, leaderboard.",
+    "ogTitle": "Ukraine Quizzes 🇺🇦",
+    "ogDescription": "Test your knowledge about all 26 regions of Ukraine!"
+  }
+}

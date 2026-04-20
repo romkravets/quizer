@@ -20,7 +20,7 @@ const Login = () => {
             await auth.signInWithPopup(GoogleProvider)
               .then((response) => {
                 const {user, credential} = response
-                contextValue.setAuthObject(prevState => ({
+                contextValue.setAuthObject((prevState: any) => ({
                   ...prevState,
                   isAuthenticated: true,
                   userName: user!.displayName,
@@ -31,7 +31,7 @@ const Login = () => {
               }).then(async () => {
                 if (auth.currentUser) {
                   const tokenId = await auth.currentUser.getIdToken()
-                  contextValue.setAuthObject(prevState => ({
+                  contextValue.setAuthObject((prevState: any) => ({
                     ...prevState,
                     token: tokenId || ''
                   }))
