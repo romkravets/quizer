@@ -11,12 +11,19 @@ import { regions } from "../src/helpers/regionType";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Fancybox from "../src/helpers/map";
 import { translateRegionNameToUkrainian } from "../src/helpers/functions";
+import RegionMap from "../src/components/RegionMap/RegionMap";
+
+// Регіони, для яких є інтерактивна карта з точками
+const INTERACTIVE_REGIONS = {
+  Ternopil: "/data/ternopil-places.json",
+};
 
 const Dashboard = () => {
   const tasksRef = ref(db);
   const router = useRouter();
   const [dataRegion, setDataRegion] = useState([]);
   const [loading, setLoadingDb] = useState(false);
+  const [placesData, setPlacesData] = useState(null);
 
   const contextRegion = useContext(RegionContext);
 
@@ -44,6 +51,20 @@ const Dashboard = () => {
     }
   };
 
+  // Завантажуємо JSON з точками, якщо регіон підтримує інтерактивну карту
+  useEffect(() => {
+    if (!router.isReady) return;
+    const jsonPath = INTERACTIVE_REGIONS[router.query.data];
+    if (jsonPath) {
+      fetch(jsonPath)
+        .then((r) => r.json())
+        .then(setPlacesData)
+        .catch(() => setPlacesData(null));
+    } else {
+      setPlacesData(null);
+    }
+  }, [router.isReady, router.query.data]);
+
   useEffect(() => {
     setLoadingDb(true);
     if (router.isReady) {
@@ -53,6 +74,9 @@ const Dashboard = () => {
       });
     }
   }, [router.isReady, router.query.form]);
+
+  const currentRegion = router.query.data;
+  const isInteractive = Boolean(INTERACTIVE_REGIONS[currentRegion]);
 
   return (
     <div className="dashboard">
@@ -71,42 +95,45 @@ const Dashboard = () => {
       </nav>
       <div className="dashboard-content">
         <div className="region">
-          <h4>{translateRegionNameToUkrainian(router.query.data)}</h4>
+          <h4>{translateRegionNameToUkrainian(currentRegion)}</h4>
         </div>
+
         <div className="dashboard-map">
-          {regions.map((item, index) => {
-            switch (router.query.data) {
-              case item:
-                return (
-                  <Fancybox
-                    key={index}
-                    options={{
-                      Carousel: {
-                        infinite: false,
-                      },
-                    }}
-                  >
-                    <a
+          {isInteractive ? (
+            // Інтерактивна карта з точками міст
+            <RegionMap region={currentRegion} placesData={placesData} />
+          ) : (
+            // Стара поведінка — Fancybox для регіонів без даних
+            regions.map((item, index) => {
+              switch (currentRegion) {
+                case item:
+                  return (
+                    <Fancybox
                       key={index}
-                      data-fancybox="gallery"
-                      href={`/region-map/${router.query.data}.jpeg`}
+                      options={{ Carousel: { infinite: false } }}
                     >
-                      <div key={index} className="region-map-container">
-                        <Image
-                          src={`/region-map/${router.query.data}.jpeg`}
-                          layout="fill"
-                          objectFit="contain"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                  </Fancybox>
-                );
-              default:
-                break;
-            }
-          })}
+                      <a
+                        data-fancybox="gallery"
+                        href={`/region-map/${currentRegion}.jpeg`}
+                      >
+                        <div className="region-map-container">
+                          <Image
+                            src={`/region-map/${currentRegion}.jpeg`}
+                            layout="fill"
+                            objectFit="contain"
+                            alt=""
+                          />
+                        </div>
+                      </a>
+                    </Fancybox>
+                  );
+                default:
+                  return null;
+              }
+            })
+          )}
         </div>
+
         <h2 style={{ marginLeft: "20px", fontWeight: "400" }}>
           Квести, тести та вікторини
         </h2>
@@ -131,7 +158,7 @@ const Dashboard = () => {
                   <Link
                     className="dashboard-card"
                     key={index}
-                    href={`/quest/${item.id}?data=${router.query.data}`}
+                    href={`/quest/${item.id}?data=${currentRegion}`}
                     target="_blank"
                     passHref
                   >

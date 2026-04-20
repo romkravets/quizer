@@ -1,0 +1,357 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  min-height: 100vh;
+  background: #fffaeb;
+}
+
+/* ─── Back link ─── */
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  background: #fff0c2;
+  border: 1px solid #ffd900;
+  border-radius: 8px;
+  color: #1f1f1f;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.backLink:hover {
+  background: #ffd900;
+}
+
+/* ─── Header ─── */
+.header {
+  margin-bottom: 28px;
+}
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+.tagline {
+  margin: 0;
+  font-size: 15px;
+  color: #666;
+  font-style: italic;
+}
+
+/* ─── Quick info cards ─── */
+.quickInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 12px;
+  background: #fff;
+  border: 1px solid #ffd900;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 217, 0, 0.15);
+}
+.infoLabel {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.infoValue {
+  font-size: 17px;
+  color: #1f1f1f;
+  font-weight: 700;
+}
+
+/* ─── Hero image ─── */
+.heroImage {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Tabs ─── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0;
+  border-bottom: 2px solid #ffd900;
+  overflow-x: auto;
+}
+.tab {
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s;
+}
+.tab:hover {
+  color: #fa520f;
+}
+.activeTab {
+  color: #fa520f;
+  border-bottom-color: #fa520f;
+  font-weight: 600;
+}
+
+/* ─── Tab content ─── */
+.tabContent {
+  background: #fff;
+  border: 1px solid #ffd900;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 24px;
+  margin-bottom: 28px;
+}
+.tabPane {
+  animation: fadeUp 0.2s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.tabPane h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+/* ─── About tab ─── */
+.mainText {
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.infoBlock {
+  background: #fffaeb;
+  border-left: 4px solid #ffd900;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-top: 16px;
+}
+.infoBlock h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+.infoBlock ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #444;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ─── Attractions tab ─── */
+.attractionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.attractionCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #fffaeb;
+  border-left: 3px solid #fa520f;
+  border-radius: 6px;
+  transition: transform 0.15s;
+}
+.attractionCard:hover {
+  transform: translateX(4px);
+}
+.attractionNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  background: #fa520f;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 50%;
+}
+.attractionText {
+  font-size: 14px;
+  color: #1f1f1f;
+  line-height: 1.5;
+}
+
+/* ─── Discussion tab ─── */
+.commentForm {
+  background: #fffaeb;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.commentForm h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+.commentForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.commentForm input,
+.commentForm textarea {
+  padding: 10px 14px;
+  border: 1px solid #ffd900;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #1f1f1f;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.commentForm input:focus,
+.commentForm textarea:focus {
+  border-color: #fa520f;
+}
+.commentForm button {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background: #fa520f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.commentForm button:hover {
+  background: #fb6424;
+}
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.comment {
+  padding: 14px 16px;
+  background: #fffaeb;
+  border-left: 3px solid #ffd900;
+  border-radius: 6px;
+}
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.commentHeader strong {
+  font-size: 14px;
+  color: #1f1f1f;
+}
+.commentDate {
+  font-size: 12px;
+  color: #999;
+}
+.comment p {
+  margin: 0;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.6;
+}
+.noComments {
+  text-align: center;
+  color: #999;
+  padding: 24px 0;
+  font-style: italic;
+}
+
+/* ─── Archive tab ─── */
+.archiveBox {
+  background: #fffaeb;
+  border-left: 4px solid #ffd900;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+.archiveBox h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+.archiveBox p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.6;
+}
+.archiveBox ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.8;
+}
+
+/* ─── Footer link ─── */
+.related {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ffd900;
+  border-radius: 12px;
+  text-align: center;
+}
+.related h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #1f1f1f;
+}
+.relatedLink {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fa520f;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+.relatedLink:hover {
+  background: #fb6424;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .header h1 { font-size: 24px; }
+  .heroImage { height: 180px; }
+  .tabContent { padding: 16px; }
+  .tabs { flex-wrap: wrap; }
+  .tab { font-size: 13px; padding: 8px 12px; }
+}

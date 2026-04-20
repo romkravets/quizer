@@ -1,0 +1,35 @@
+{
+  "region": "Ternopil",
+  "places": [
+    {
+      "id": "ternopil-city",
+      "name": "Тернопіль",
+      "x": 28,
+      "y": 52
+    },
+    {
+      "id": "chortkiv",
+      "name": "Чортків",
+      "x": 46,
+      "y": 72
+    },
+    {
+      "id": "kremenets",
+      "name": "Кременець",
+      "x": 12,
+      "y": 22
+    },
+    {
+      "id": "zbarazh",
+      "name": "Збараж",
+      "x": 18,
+      "y": 40
+    },
+    {
+      "id": "berezhany",
+      "name": "Бережани",
+      "x": 8,
+      "y": 55
+    }
+  ]
+}

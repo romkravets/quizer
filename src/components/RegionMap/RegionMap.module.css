@@ -1,0 +1,271 @@
+/* ─── Map wrapper ─── */
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.mapImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Pin ─── */
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.pinDot {
+  width: 14px;
+  height: 14px;
+  background: #fa520f;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 2px 8px rgba(250, 82, 15, 0.5);
+  transition: transform 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.pinPulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(250, 82, 15, 0.35);
+  animation: pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+}
+
+.pinLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1f1f1f;
+  background: rgba(255, 250, 235, 0.92);
+  border: 1px solid rgba(250, 82, 15, 0.25);
+  border-radius: 6px;
+  padding: 2px 7px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  transition: opacity 0.15s ease;
+  opacity: 0;
+  margin-top: 2px;
+}
+
+.pin:hover .pinLabel,
+.pinHovered .pinLabel {
+  opacity: 1;
+}
+
+.pin:hover .pinDot,
+.pinHovered .pinDot {
+  transform: scale(1.4);
+  background: #fb6424;
+}
+
+/* ─── Drawer overlay ─── */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 31, 31, 0.45);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Drawer panel ─── */
+.drawer {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  background: #fffaeb;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #ffd900;
+  flex-shrink: 0;
+}
+
+.drawerTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.drawerClose {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #1f1f1f;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.drawerClose:hover {
+  background: #fff0c2;
+}
+
+/* ─── Tabs ─── */
+.tabs {
+  display: flex;
+  gap: 0;
+  padding: 12px 24px 0;
+  border-bottom: 1px solid #ffe880;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  color: #fa520f;
+}
+
+.tabActive {
+  color: #fa520f;
+  border-bottom-color: #fa520f;
+  font-weight: 600;
+}
+
+/* ─── Body ─── */
+.drawerBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.historyText {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #2a2a2a;
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ffe880;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin: 0 0 6px;
+}
+
+.cardDesc {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.6;
+  margin: 0 0 4px;
+}
+
+.cardMeta {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.empty {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  padding: 32px 0;
+}
+
+/* ─── Photos ─── */
+.photoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.photoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ffe880;
+}
+
+.photoCaption {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  margin: 0;
+}
