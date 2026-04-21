@@ -1,4 +1,35 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
+
+const REGION_DATA = {
+  Crimea:           { name: "Автономна Республіка Крим", emblem: "/geralds/crim.png" },
+  Cherkasy:         { name: "Черкаська область",         emblem: "/geralds/cherkaska.png" },
+  Chernihiv:        { name: "Чернігівська область",      emblem: "/geralds/chernihivska.png" },
+  Chernivtsi:       { name: "Чернівецька область",       emblem: "/geralds/chernivetska.png" },
+  Dnipropetrovsk:   { name: "Дніпропетровська область",  emblem: "/geralds/dnipro.png" },
+  Donetsk:          { name: "Донецька область",          emblem: "/geralds/donetsk.png" },
+  "Ivano-Frankivsk":{ name: "Івано-Франківська область", emblem: "/geralds/ivano-frankivsk.png" },
+  Kharkiv:          { name: "Харківська область",        emblem: "/geralds/harkivska.png" },
+  Kherson:          { name: "Херсонська область",        emblem: "/geralds/hersonska.png" },
+  Khmelnytskyi:     { name: "Хмельницька область",       emblem: "/geralds/hmelnitska.png" },
+  Kyiv:             { name: "Київська область",          emblem: "/geralds/kievska.png" },
+  KyivCity:         { name: "Місто Київ",                emblem: "/geralds/kiev.png" },
+  Kirovohrad:       { name: "Кіровоградська область",    emblem: "/geralds/kirovograd.png" },
+  Luhansk:          { name: "Луганська область",         emblem: "/geralds/luhanska.png" },
+  Lviv:             { name: "Львівська область",         emblem: "/geralds/lvivska.png" },
+  Mykolaiv:         { name: "Миколаївська область",      emblem: "/geralds/mikolaivska.png" },
+  Odessa:           { name: "Одеська область",           emblem: "/geralds/oddesa.png" },
+  Poltava:          { name: "Полтавська область",        emblem: "/geralds/poltavska.png" },
+  Rivne:            { name: "Рівненська область",        emblem: "/geralds/rivnenska.png" },
+  Sumu:             { name: "Сумська область",           emblem: "/geralds/summska.png" },
+  Ternopil:         { name: "Тернопільська область",     emblem: "/geralds/ternopilska.png" },
+  Zakarpattia:      { name: "Закарпатська область",      emblem: "/geralds/zakarpata.png" },
+  Vinnytsia:        { name: "Вінницька область",         emblem: "/geralds/vinetska.png" },
+  Volyn:            { name: "Волинська область",         emblem: "/geralds/volinska.png" },
+  Zaporizhia:       { name: "Запорізька область",        emblem: "/geralds/zaporiz.png" },
+  Zhytomyr:         { name: "Житомирська область",       emblem: "/geralds/zhytomyr.png" },
+};
 
 const MapUk = () => {
   const width = 26;
@@ -7,13 +38,87 @@ const MapUk = () => {
   const x = "0";
   const y = "0";
 
+  const [hovered, setHovered] = useState(null);
+
+  const handleMouseOver = (e) => {
+    const anchor = e.target.closest("a");
+    if (!anchor) return;
+    const id = anchor.id;
+    if (id && REGION_DATA[id]) {
+      setHovered(id);
+    }
+  };
+
+  const handleMouseLeave = () => setHovered(null);
+
+  const info = hovered ? REGION_DATA[hovered] : null;
+
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
+        position: "relative",
       }}
     >
+      {/* Region info tooltip — top-left */}
+      <div
+        style={{
+          position: "absolute",
+          top: "16px",
+          left: "16px",
+          zIndex: 10,
+          pointerEvents: "none",
+          transition: "opacity 0.2s ease, transform 0.2s ease",
+          opacity: info ? 1 : 0,
+          transform: info ? "translateY(0)" : "translateY(-6px)",
+        }}
+      >
+        {info && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              background: "rgba(4, 13, 24, 0.82)",
+              border: "1px solid rgba(255, 210, 0, 0.35)",
+              borderRadius: "10px",
+              padding: "10px 16px",
+              backdropFilter: "blur(12px)",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,210,0,0.08)",
+              minWidth: "200px",
+            }}
+          >
+            <img
+              src={info.emblem}
+              alt=""
+              style={{ width: 44, height: 44, objectFit: "contain", flexShrink: 0 }}
+            />
+            <div>
+              <div
+                style={{
+                  color: "rgba(255, 235, 150, 0.95)",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  lineHeight: 1.3,
+                  letterSpacing: "0.01em",
+                }}
+              >
+                {info.name}
+              </div>
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.4)",
+                  fontSize: "11px",
+                  marginTop: "3px",
+                }}
+              >
+                Натисни, щоб пройти квіз →
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <svg
         className="image-container absolute w-[100%] h-[100%]"
         id="Ukraine"
@@ -22,6 +127,8 @@ const MapUk = () => {
         y="0"
         version="1.1"
         viewBox="0 0 610 410"
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
       >
         <g>
           <a id="SevastopolCity" role="button">
