@@ -47,7 +47,24 @@ const Home = () => {
       : 0;
 
   return (
-    <div className="relative min-h-screen bg-surface-ivory">
+    <div className="relative min-h-screen">
+      {/* ── Video background ── */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: "fixed",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: -1,
+          pointerEvents: "none",
+        }}
+        src="/test.mp4"
+      />
       {/* ── Dark top bar ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-brand-dark shadow-dark-lg">
         {/* Fire gradient accent line */}
