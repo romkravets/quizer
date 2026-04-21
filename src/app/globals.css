@@ -125,8 +125,21 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 }
 
 /* ═══ Map ═══ */
+@keyframes mapReveal {
+  from { opacity: 0; transform: scale(0.975); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes regionPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.45)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(255, 200, 0, 0.75)); }
+}
+
 #Ukraine {
   height: 100vh;
+  position: relative;
+  z-index: 1;
+  animation: mapReveal 1.4s ease forwards;
 }
 
 #KyivCity {
@@ -135,23 +148,25 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 }
 
 .mapBackground {
-  fill: var(--gold);
-  stroke: var(--dark);
-  stroke-width: 0.5;
-  transition: fill 0.2s ease;
+  fill: #1b3d70;
+  stroke: rgba(255, 210, 0, 0.38);
+  stroke-width: 0.65;
+  transition: fill 0.22s ease, filter 0.22s ease;
 }
 
 #Ukraine path:hover {
-  fill: var(--orange);
+  fill: #f5c400;
+  filter: drop-shadow(0 0 9px rgba(255, 200, 0, 0.65));
 }
 
 #Ukraine .mapImage:hover {
-  fill: var(--orange);
+  filter: drop-shadow(0 0 6px rgba(250, 82, 15, 0.7));
 }
 
 .pointerCircle {
-  r: 2px;
-  fill: var(--orange);
+  r: 2.5px;
+  fill: var(--gold);
+  opacity: 0.85;
   stroke-linecap: square;
   stroke-linejoin: bevel;
   stroke-miterlimit: 4;
@@ -166,11 +181,14 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
   transition: all 0.3s ease;
   pointer-events: none;
   font-family: 'Inter', Arial, sans-serif;
-  font-weight: 400;
-  font-size: 0.7em;
-  fill: var(--dark);
-  text-shadow: white 1px 1px 0, white -1px -1px 0,
-    white -1px 1px 0, white 1px -1px;
+  font-weight: 500;
+  font-size: 0.68em;
+  fill: rgba(255, 235, 150, 0.95);
+  text-shadow:
+    #040d18 1px 1px 0,
+    #040d18 -1px -1px 0,
+    #040d18 -1px 1px 0,
+    #040d18 1px -1px;
 }
 
 #Kyiv:hover ~.cityKyiv,
