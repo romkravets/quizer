@@ -11,6 +11,11 @@ const Home = () => {
   const { locale, toggleLocale, t } = useTranslation();
   const { progress, completedRegions } = useProgress();
   const [swRegistered, setSwRegistered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Register service worker for PWA
   useEffect(() => {
@@ -80,7 +85,7 @@ const Home = () => {
         </div>
 
         {/* ── Progress strip (only when started) ── */}
-        {progress && progress.totalQuizzesCompleted > 0 && (
+        {mounted && progress && progress.totalQuizzesCompleted > 0 && (
           <div className="flex items-center gap-3 border-t border-white/10 px-4 py-1.5">
             <span className="shrink-0 text-xs text-white/35 tabular-nums">
               {completedRegions.length}/{regions.length}
@@ -108,7 +113,9 @@ const Home = () => {
         className="pt-[48px]"
         style={{
           paddingTop:
-            progress && progress.totalQuizzesCompleted > 0 ? "80px" : "48px",
+            mounted && progress && progress.totalQuizzesCompleted > 0
+              ? "80px"
+              : "48px",
         }}
       >
         <MapUk />

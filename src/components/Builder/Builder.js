@@ -100,7 +100,9 @@ const Builder = ({content, submit, values, loading}) => {
   return (
     <div className="user-form">
       <div className="w-100">
-        <h2 style={{margin: '20px 30px'}}>Створення квесту</h2>
+        <div className="builder-page-header">
+          <h2>Створення квесту</h2>
+        </div>
         <div className="stepper-wrapper">
           <StepIndicator
             content={content}

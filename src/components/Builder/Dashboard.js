@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import Builder from "./Builder"
 import PersonalInformation from "./steps/PersonalInformation/PersonalInformation"
+import Settings from "./steps/Settings/Settings"
 import Education from "./steps/Education/Education"
 import {ref, serverTimestamp, set, update} from "firebase/database"
 import {v4 as uuid} from "uuid"
@@ -84,25 +85,34 @@ const Board = (props) => {
     setEditedValues({...editedValues, [field]: array})
   }
 
+  const handleSetValues = (field, value) => {
+    const updatedValues = {...values, [field]: value}
+    const editValues = {...editedValues, [field]: value}
+    setValues(updatedValues)
+    setEditedValues(editValues)
+  }
+
   const steps = [
     {
-      label: "Загальна інфомація",
+      label: "Загальна інформація",
       content:
         <PersonalInformation
           values={values}
-          setValues={(field, value) => {
-            const updatedValues = {...values, [field]: value}
-            const editValues = {...editedValues, [field]: value}
-            field !== 'socialNetworks' && updatedValues.socialNetworks?.forEach(network => network.updated = false)
-            setValues(updatedValues)
-            setEditedValues(editValues)
-          }}
+          setValues={handleSetValues}
           errors={errors}
           setErrors={setErrors}
         />,
     },
     {
-      label: "Створення запитаннь",
+      label: "Параметри тесту",
+      content:
+        <Settings
+          values={values}
+          setValues={handleSetValues}
+        />,
+    },
+    {
+      label: "Додавання питань",
       content:
         <Education
           values={values}
