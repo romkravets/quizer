@@ -136,7 +136,9 @@ h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 400; }
 }
 
 #Ukraine {
-  height: 100vh;
+  height: 90vh;
+  width: 100%;
+  margin-top: 40px;
   position: relative;
   z-index: 1;
   animation: mapReveal 1.4s ease forwards;

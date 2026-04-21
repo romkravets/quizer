@@ -110,12 +110,14 @@ const Home = () => {
 
       {/* ── Map ── */}
       <div
-        className="pt-[48px]"
         style={{
+          height: "100vh",
           paddingTop:
             mounted && progress && progress.totalQuizzesCompleted > 0
               ? "80px"
               : "48px",
+          boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
         <MapUk />
