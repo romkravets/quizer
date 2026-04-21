@@ -3,32 +3,59 @@ import { useState } from "react";
 import Link from "next/link";
 
 const REGION_DATA = {
-  Crimea:           { name: "Автономна Республіка Крим", emblem: "/geralds/crim.png" },
-  Cherkasy:         { name: "Черкаська область",         emblem: "/geralds/cherkaska.png" },
-  Chernihiv:        { name: "Чернігівська область",      emblem: "/geralds/chernihivska.png" },
-  Chernivtsi:       { name: "Чернівецька область",       emblem: "/geralds/chernivetska.png" },
-  Dnipropetrovsk:   { name: "Дніпропетровська область",  emblem: "/geralds/dnipro.png" },
-  Donetsk:          { name: "Донецька область",          emblem: "/geralds/donetsk.png" },
-  "Ivano-Frankivsk":{ name: "Івано-Франківська область", emblem: "/geralds/ivano-frankivsk.png" },
-  Kharkiv:          { name: "Харківська область",        emblem: "/geralds/harkivska.png" },
-  Kherson:          { name: "Херсонська область",        emblem: "/geralds/hersonska.png" },
-  Khmelnytskyi:     { name: "Хмельницька область",       emblem: "/geralds/hmelnitska.png" },
-  Kyiv:             { name: "Київська область",          emblem: "/geralds/kievska.png" },
-  KyivCity:         { name: "Місто Київ",                emblem: "/geralds/kiev.png" },
-  Kirovohrad:       { name: "Кіровоградська область",    emblem: "/geralds/kirovograd.png" },
-  Luhansk:          { name: "Луганська область",         emblem: "/geralds/luhanska.png" },
-  Lviv:             { name: "Львівська область",         emblem: "/geralds/lvivska.png" },
-  Mykolaiv:         { name: "Миколаївська область",      emblem: "/geralds/mikolaivska.png" },
-  Odessa:           { name: "Одеська область",           emblem: "/geralds/oddesa.png" },
-  Poltava:          { name: "Полтавська область",        emblem: "/geralds/poltavska.png" },
-  Rivne:            { name: "Рівненська область",        emblem: "/geralds/rivnenska.png" },
-  Sumu:             { name: "Сумська область",           emblem: "/geralds/summska.png" },
-  Ternopil:         { name: "Тернопільська область",     emblem: "/geralds/ternopilska.png" },
-  Zakarpattia:      { name: "Закарпатська область",      emblem: "/geralds/zakarpata.png" },
-  Vinnytsia:        { name: "Вінницька область",         emblem: "/geralds/vinetska.png" },
-  Volyn:            { name: "Волинська область",         emblem: "/geralds/volinska.png" },
-  Zaporizhia:       { name: "Запорізька область",        emblem: "/geralds/zaporiz.png" },
-  Zhytomyr:         { name: "Житомирська область",       emblem: "/geralds/zhytomyr.png" },
+  Crimea: { name: "Автономна Республіка Крим", emblem: "/geralds/crim.png" },
+  Cherkasy: { name: "Черкаська область", emblem: "/geralds/cherkaska.png" },
+  Chernihiv: {
+    name: "Чернігівська область",
+    emblem: "/geralds/chernihivska.png",
+  },
+  Chernivtsi: {
+    name: "Чернівецька область",
+    emblem: "/geralds/chernivetska.png",
+  },
+  Dnipropetrovsk: {
+    name: "Дніпропетровська область",
+    emblem: "/geralds/dnipro.png",
+  },
+  Donetsk: { name: "Донецька область", emblem: "/geralds/donetsk.png" },
+  "Ivano-Frankivsk": {
+    name: "Івано-Франківська область",
+    emblem: "/geralds/ivano-frankivsk.png",
+  },
+  Kharkiv: { name: "Харківська область", emblem: "/geralds/harkivska.png" },
+  Kherson: { name: "Херсонська область", emblem: "/geralds/hersonska.png" },
+  Khmelnytskyi: {
+    name: "Хмельницька область",
+    emblem: "/geralds/hmelnitska.png",
+  },
+  Kyiv: { name: "Київська область", emblem: "/geralds/kievska.png" },
+  KyivCity: { name: "Місто Київ", emblem: "/geralds/kiev.png" },
+  Kirovohrad: {
+    name: "Кіровоградська область",
+    emblem: "/geralds/kirovograd.png",
+  },
+  Luhansk: { name: "Луганська область", emblem: "/geralds/luhanska.png" },
+  Lviv: { name: "Львівська область", emblem: "/geralds/lvivska.png" },
+  Mykolaiv: {
+    name: "Миколаївська область",
+    emblem: "/geralds/mikolaivska.png",
+  },
+  Odessa: { name: "Одеська область", emblem: "/geralds/oddesa.png" },
+  Poltava: { name: "Полтавська область", emblem: "/geralds/poltavska.png" },
+  Rivne: { name: "Рівненська область", emblem: "/geralds/rivnenska.png" },
+  Sumu: { name: "Сумська область", emblem: "/geralds/summska.png" },
+  Ternopil: {
+    name: "Тернопільська область",
+    emblem: "/geralds/ternopilska.png",
+  },
+  Zakarpattia: {
+    name: "Закарпатська область",
+    emblem: "/geralds/zakarpata.png",
+  },
+  Vinnytsia: { name: "Вінницька область", emblem: "/geralds/vinetska.png" },
+  Volyn: { name: "Волинська область", emblem: "/geralds/volinska.png" },
+  Zaporizhia: { name: "Запорізька область", emblem: "/geralds/zaporiz.png" },
+  Zhytomyr: { name: "Житомирська область", emblem: "/geralds/zhytomyr.png" },
 };
 
 const MapUk = () => {
@@ -85,14 +112,20 @@ const MapUk = () => {
               borderRadius: "10px",
               padding: "10px 16px",
               backdropFilter: "blur(12px)",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,210,0,0.08)",
+              boxShadow:
+                "0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,210,0,0.08)",
               minWidth: "200px",
             }}
           >
             <img
               src={info.emblem}
               alt=""
-              style={{ width: 44, height: 44, objectFit: "contain", flexShrink: 0 }}
+              style={{
+                width: 44,
+                height: 44,
+                objectFit: "contain",
+                flexShrink: 0,
+              }}
             />
             <div>
               <div
