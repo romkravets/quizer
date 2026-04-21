@@ -12,7 +12,7 @@ export default function RegionMap({ region, placesData }) {
     <div className={styles.mapWrapper}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/region-map/${region}.jpeg`}
+        src={`/region-map/${region}.png`}
         alt={region}
         className={styles.mapImage}
         draggable={false}

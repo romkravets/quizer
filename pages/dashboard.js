@@ -84,11 +84,11 @@ const Dashboard = () => {
               <Fancybox options={{ Carousel: { infinite: false } }}>
                 <a
                   data-fancybox="gallery"
-                  href={`/region-map/${currentRegion}.jpeg`}
+                  href={`/region-map/${currentRegion}.png`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`/region-map/${currentRegion}.jpeg`}
+                    src={`/region-map/${currentRegion}.png`}
                     alt={translateRegionNameToUkrainian(currentRegion)}
                   />
                 </a>
